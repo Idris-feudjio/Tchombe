@@ -71,7 +71,7 @@ class HomePagePlanning extends StatelessWidget {
                                     _planningCardItemController.getLookSummary(
                                         planningSummary
                                             .summary.value!.lookAssociated,
-                                        1),
+                                        '1'),
                                 parameters: {
                                   'date': planningSummary.summary.value!.date
                                 });

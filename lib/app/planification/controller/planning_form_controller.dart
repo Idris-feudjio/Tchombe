@@ -75,7 +75,7 @@ class PlanningFormController extends GetxController {
         ..lookAssociated = _look.toBuilder()
         ..event = txtEvent.text);
       if (isUpdate) {
-        _planningRepository.update(item, planningSummary!.summary.id!);
+        _planningRepository.update(item, planningSummary!.summary.id!.toString());
         CoreFunction.openSnackBar('K_SUCCES'.tr, 'K_EDIT_SUCCEFULL'.tr);
       } else {
         _planningRepository.insert(item);

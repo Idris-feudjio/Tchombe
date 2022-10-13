@@ -45,7 +45,7 @@ class DetailLookView extends StatelessWidget {
             textCancel: 'K_CANCEL'.tr,
             textConfirm: 'K_Ok'.tr,
             onConfirm: _fetchDisplayAndDeleteLookController
-                .deleteLook(_lookDetailController.look.summary.id!),
+                .deleteLook(_lookDetailController.look.summary.id!.toString()),
             onCancel: () {});
       } else {
         shareFile();

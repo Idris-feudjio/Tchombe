@@ -59,7 +59,7 @@ class DetailClothesView extends StatelessWidget {
           textCancel: 'K_CANCEL'.tr,
           textConfirm: 'K_Ok'.tr,
           onConfirm: _fetchDisplayAndDeleteClothesController
-              .deleteClothes(_detailClothesController.clothes.summary.id),
+              .deleteClothes(_detailClothesController.clothes.summary.id.toString()),
           onCancel: () {});
     } else {
       shareFile();

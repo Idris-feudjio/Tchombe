@@ -6,6 +6,8 @@ import 'package:tchombe/core/bidings/home_biding.dart';
 import 'package:tchombe/themes/tchombe_colors.dart';
 import 'package:tchombe/themes/theme_data.dart';
 import 'package:tchombe/utils/routes.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import 'core/controller/translations.dart';
 
@@ -14,6 +16,8 @@ void main() async {
     systemNavigationBarColor: Colors.white, // navigation bar color
     statusBarColor: TchombeColor.statusBarColor, // status bar color
   ));
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await GetStorage.init();
   runApp(const MyApp());
 }

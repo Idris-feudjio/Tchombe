@@ -36,7 +36,7 @@ class ClothesCardItemController extends GetxController {
       textCancel: 'K_CANCEL'.tr,
       onCancel: () {},
       onConfirm: () => listOfSelectItem.forEach((ClothesSummary id) =>
-          _fetchDisplayAndDeleteClothesController.deleteClothes(id.summary.id)),
+          _fetchDisplayAndDeleteClothesController.deleteClothes(id.summary.id.toString())),
     );
     if (result == true) {
       _fetchDisplayAndDeleteClothesController.fetchListClotheInData =

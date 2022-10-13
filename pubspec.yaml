@@ -32,7 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   table_calendar: ^3.0.2
-  sembast: ^3.1.0
+  #sembast: ^3.1.0
   get: ^4.3.8
   path_provider: ^2.0.1
   equatable: ^0.2.3
@@ -43,7 +43,8 @@ dependencies:
   timelines: ^0.1.0
   timeline_tile: ^2.0.0
   intl: ^0.17.0
-  #cloud_firestore: ^3.5.0
+  cloud_firestore: ^3.5.0
+  firebase_storage: ^10.2.7
 
 
   # The following adds the Cupertino Icons font to your application.
