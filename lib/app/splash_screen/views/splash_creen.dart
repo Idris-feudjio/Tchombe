@@ -36,10 +36,11 @@ class _SplashScreenState extends State<SplashScreen> {
         if (storageSplashScreen.read('isSplashScreen') != null) {
           isPlashScreen = storageSplashScreen.read('isSplashScreen');
         }
-        if (isPlashScreen)
+        if (isPlashScreen) {
           Get.offAll(
             () => DashboardPage(page: bottomNavigationBarEnum.HomePage),
           );
+        }
       },
     );
 
@@ -57,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
         body: Container(
                 padding: EdgeInsets.all(padding10),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: AssetImage(TchombeAsset.IMG_BACKGROUND),
@@ -84,7 +85,7 @@ class _SplashScreenState extends State<SplashScreen> {
         bottomSheet:  Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(width: width10),
+                  const SizedBox(width: width10),
                   Row(
                     children: List.generate(
                       items,

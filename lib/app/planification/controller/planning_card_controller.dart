@@ -10,7 +10,7 @@ class PlanningCardItemController extends GetxController {
   PlanningController _planningController = Get.find<PlanningController>();
   RxInt countSelectedPlanning = 0.obs;
 
-  LookSummary getLookSummary(Look look, int id) {
+  LookSummary getLookSummary(Look look, String id) {
     AbstractSummaryDto<Look> abstractDto = AbstractSummaryDto(look, id);
     LookSummary lookSummary = LookSummary(abstractDto);
     return lookSummary;
@@ -24,7 +24,7 @@ class PlanningCardItemController extends GetxController {
         onCancel: () => Get.back(),
         onConfirm: () {
           listOfPlanning.forEach((PlanningSummary planningSummary) {
-            _planningController.deletePlanning(planningSummary.summary.id!);
+            _planningController.deletePlanning(planningSummary.summary.id!.toString());
           });
         });
     if (result == true) {

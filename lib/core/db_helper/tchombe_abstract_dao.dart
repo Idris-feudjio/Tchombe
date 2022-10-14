@@ -1,49 +1,32 @@
-import 'package:tchombe/core/db_helper/tchombe_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:tchombe/core/model/abstract_dto.dart';
-import 'package:sembast/sembast.dart';
 import 'package:tchombe/core/model/abstract_summary_dto.dart';
 
 abstract class TchombeAbstractDao<D extends AbstractDto> {
-  final _tchombeStore = intMapStoreFactory.store(D.toString());
 
-  Future<Database> get _db async => await AppDatabase.instance.database;
-
+  final CollectionReference _tchombeStore =
+      FirebaseFirestore.instance.collection(D.toString());
   Future insert(D dto) async {
-    await _tchombeStore.add(
-      await _db,
-      dto.toJsonMap(),
-    );
+    _tchombeStore.add(dto.toJsonMap());
   }
 
-  Future update(D dto, int id) async {
-    final finder = Finder(filter: Filter.byKey(id));
-    await _tchombeStore.update(
-      await _db,
-      dto.toJsonMap(),
-      finder: finder,
-    );
+
+  Future delete(String id) async {
+    _tchombeStore.doc(id).delete();
   }
 
-  Future delete(int? id) async {
-    final finder = Finder(filter: Filter.byKey(id));
-    await _tchombeStore.delete(
-      await _db,
-      finder: finder,
-    );
+  Future update(D dto, String id) async {
+    _tchombeStore.doc(id).update(dto.toJsonMap());
   }
 
-  Future<List<AbstractSummaryDto<D>>> searchAll(
-      {Filter? filter, List<SortOrder>? sortOrders}) async {
-    final finder = Finder(sortOrders: sortOrders, filter: filter);
-    final recordSnapshots = await _tchombeStore.find(
-      await _db,
-      finder: finder
-    );
-
-    return recordSnapshots
+  Future<List<AbstractSummaryDto<D>>> searchAll() async {
+    final recordSnapshots = await _tchombeStore.get();
+    debugPrint(recordSnapshots.docs.toString());
+    return recordSnapshots.docs
         .map((snapshot) {
-          final D dto = toSummaryDto(snapshot.value) as D;
-          final int id = snapshot.key;
+          final D dto = toSummaryDto(snapshot.data()) as D;
+          final String id = snapshot.id;
           return AbstractSummaryDto(dto, id);
         })
         .toList()

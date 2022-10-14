@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:sembast/sembast.dart';
+//import 'package:sembast/sembast.dart';
 import 'package:tchombe/app/looks/models/look.dart';
 import 'package:tchombe/app/looks/service/look_repository.dart';
 import 'package:built_collection/src/list.dart';
@@ -23,7 +23,7 @@ class FetchDisplayAndDeleteLookController extends GetxController {
 
   Future<RxList<LookSummary>> fetchData() async {
     List<AbstractSummaryDto<Look>> _listLook =
-        await _lookRepository.searchAll(sortOrders: [SortOrder('lookId')]);
+        await _lookRepository.searchAll();//sortOrders: [SortOrder('lookId')]
     List<LookSummary> list = [];
     for (var look in _listLook) {
       list.add(LookSummary(look));
@@ -33,7 +33,7 @@ class FetchDisplayAndDeleteLookController extends GetxController {
     return RxList(list);
   }
 
-  deleteLook(int id) async {
+  deleteLook(String id) async {
     await _lookRepository.delete(id);
     listOfLookFetched = await fetchData();
     numberOfLook.value = listOfLookFetched.length;

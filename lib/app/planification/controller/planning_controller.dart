@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:sembast/sembast.dart';
+//import 'package:sembast/sembast.dart';
 import 'package:tchombe/app/planification/models/planning.dart';
 import 'package:tchombe/app/planification/services/planning_repository.dart';
 import 'package:tchombe/app/planification/views/planning_form.dart';
@@ -33,7 +33,7 @@ class PlanningController extends GetxController {
   /// Fetch planning in SEMBAST DB
   Future<List<PlanningSummary>> fetchPlanning() async {
     List<AbstractSummaryDto<Planning>> _listOfPlanningAbstractSummaryDto =
-        await _planningRepository.searchAll(sortOrders: [SortOrder('date',false)]);
+        await _planningRepository.searchAll();//sortOrders: [SortOrder('date',false)]
 
     List<PlanningSummary> _listOfPlanning = [];
     for (var plan in _listOfPlanningAbstractSummaryDto) {
@@ -94,7 +94,7 @@ class PlanningController extends GetxController {
             .isAtSameMomentAs(dateTime);
   }
 
-  deletePlanning(int id) async {
+  deletePlanning(String id) async {
     _planningRepository.delete(id);
     listOfPlanningFetchInDb.value = await fetchPlanning();
     Get.back(result: true);

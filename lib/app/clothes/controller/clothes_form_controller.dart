@@ -134,7 +134,7 @@ class ClothesFormController extends GetxController {
     update();
   }
 
-  deleteClothes(int id) async {
+  deleteClothes(String id) async {
     _clothesRepository.delete(id);
     _fetchDisplayAndDeleteClothesController.fetchListClotheInData =
         await _fetchDisplayAndDeleteClothesController.fetchData();

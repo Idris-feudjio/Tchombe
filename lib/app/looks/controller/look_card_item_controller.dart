@@ -56,7 +56,7 @@ class LookCardItemController extends GetxController {
 
   deleteLook() {
     listOfSelectItem.forEach((LookSummary look) {
-      _fetchDisplayAndDeleteLookController.deleteLook(look.summary.id!);
+      _fetchDisplayAndDeleteLookController.deleteLook(look.summary.id!.toString());
     });
     listOfSelectItem.value = [];
     update();

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:sembast/sembast.dart';
+//import 'package:sembast/sembast.dart';
 import 'package:tchombe/app/clothes/models/clothes.dart';
 import 'package:tchombe/app/clothes/service/clothes_repository.dart';
 import 'package:tchombe/app/clothes/views/clothing-creation-form.dart';
@@ -33,7 +33,7 @@ class FetchDisplayAndDeleteClothesController extends GetxController {
   /// Fetch Clothes in SEMBAST DB
   Future<RxList<ClothesSummary>> fetchData() async {
     List<AbstractSummaryDto<Clothes>> _listClothes = await _clothesRepository
-        .searchAll(sortOrders: [SortOrder('clothesId', false)]);
+        .searchAll();//sortOrders: [SortOrder('clothesId', false)]
     List<ClothesSummary> list = [];
     for (var item in _listClothes) {
       list.add(ClothesSummary(item));
@@ -55,8 +55,8 @@ class FetchDisplayAndDeleteClothesController extends GetxController {
   }
 
   /// Delete clothes
-  deleteClothes(int? id) async {
-    await _clothesRepository.delete(id);
+  deleteClothes(String id) async {
+    await _clothesRepository.delete(id.toString());
     fetchListClotheInData = await fetchData();
     lengthOfClothes.value = fetchListClotheInData.length;
     computeClothesCost(fetchListClotheInData);
