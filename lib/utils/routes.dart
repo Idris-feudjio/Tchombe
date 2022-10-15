@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:tchombe/app/auth/login/controller/sign_in_page.dart';
+import 'package:tchombe/app/auth/register/sign_up_form.dart';
 import 'package:tchombe/app/clothes/views/clothes_page.dart';
 import 'package:tchombe/app/clothes/views/detail_clothes_view.dart';
 import 'package:tchombe/app/clothes/views/single_image_page.dart';

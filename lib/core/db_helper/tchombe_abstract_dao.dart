@@ -4,16 +4,15 @@ import 'package:tchombe/core/model/abstract_dto.dart';
 import 'package:tchombe/core/model/abstract_summary_dto.dart';
 
 abstract class TchombeAbstractDao<D extends AbstractDto> {
-
   final CollectionReference _tchombeStore =
       FirebaseFirestore.instance.collection(D.toString());
+
   Future insert(D dto) async {
-    _tchombeStore.add(dto.toJsonMap());
+    await _tchombeStore.add(dto.toJsonMap());
   }
 
-
   Future delete(String id) async {
-    _tchombeStore.doc(id).delete();
+    await _tchombeStore.doc(id).delete();
   }
 
   Future update(D dto, String id) async {

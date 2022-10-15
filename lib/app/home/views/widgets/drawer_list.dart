@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tchombe/app/auth/login/controller/sign_in_page.dart';
 import 'package:tchombe/core/controller/translation_controller.dart';
 import 'package:tchombe/themes/tchombe_sizes.dart';
 
@@ -8,7 +9,7 @@ class DrawerList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
-        children: [OpenDialog()],
+        children: [OpenDialog(),const LogOut(),],
       ),
     );
   }
@@ -59,3 +60,18 @@ class OpenDialog extends StatelessWidget {
     );
   }
 }
+
+class LogOut extends StatelessWidget {
+  const LogOut({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(Icons.logout,color: Colors.red,),
+      onTap:()=>Get.offAll(const SignInForm()),
+      title: const Text('Logout',style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),),
+      //trailing: Icon(Icons.navigate_next),
+    );
+  }
+}
+
